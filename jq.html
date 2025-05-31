@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Example</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    
+</head>
+<body>
+    <h1>Hello, jQuery!</h1>
+    <button id="myButton">Click Me!</button>
+    <div id="myDiv" style="display:none;">You clicked the button!</div>
+
+    <script>
+        // jQuery code goes here
+        $(document).ready(function() {
+            $('#myButton').click(function() {
+                $('#myDiv').toggle(); // Toggles the visibility of the div
+            });
+        });
+    </script>
+</body>
+</html>

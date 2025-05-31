@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+    <script>
+        window.onload = function() {
+            // Check if 'username' is stored in localStorage
+            var storedUsername = localStorage.getItem('username');
+            if (storedUsername) {
+                // Display the stored username
+                document.getElementById('welcomeMessage').innerHTML = 'Welcome, ' + storedUsername + '!';
+            } else {
+                document.getElementById('welcomeMessage').innerHTML = 'No username found.';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 id="welcomeMessage">Loading...</h1>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+<title>IndexedDB API</title> 
+<script> 
+// Detect the support for IndexedDB API 
+var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
+var db;
+var objectStore;
+var employeeData = [
+    { name: "John Smith", email: "john@company.com" },
+    { name: "Jill Patrick", email: "jill@company.com" },
+    { name: "Rock Ethan", email: "rock@company.com" },
+    { name: "Daniel Andrew", email: "daniel@company.com" }
+];
+
+var dbInitialized = false; // Flag to track DB initialization
+
+function initDb() {
+    var request = indexedDB.open("CompanyDB", 1); 
+    request.onupgradeneeded = function (evt) {
+        db = evt.target.result;
+        // Check if objectStore exists, if so, delete it
+        if (db.objectStoreNames.contains("employee")) {
+            db.deleteObjectStore("employee");
+            alert('Existing Employee Object Store Deleted');
+        }
+        // Create object store with auto-incrementing primary key
+        objectStore = db.createObjectStore("employee", { keyPath: "id", autoIncrement: true });
+        alert('Employee Object Store Created');
+        
+        // Create indexes
+        objectStore.createIndex("name", "name", { unique: false });
+        objectStore.createIndex("email", "email", { unique: true });
+
+        // Insert employee data
+        for (var i = 0; i < employeeData.length; i++) {
+            objectStore.put(employeeData[i]);
+            alert("Record added");
+        }
+    };
+    
+    request.onsuccess = function (evt) {
+        db = evt.target.result;
+        dbInitialized = true; // Set the flag to true when DB is ready
+    };
+    
+    request.onerror = function (evt) {
+        console.log("IndexedDB error: " + evt.target.errorCode);
+    };
+}
+
+function employee_details() {
+    if (!dbInitialized) {
+        alert("Database is not ready yet!");
+        return;
+    }
+
+    var store = db.transaction("employee").objectStore("employee");
+    store.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            alert("Name for id " + cursor.key + " is " + cursor.value.name);
+            cursor.continue();
+        }
+    };
+}
+
+function search_employee() {
+    if (!dbInitialized) {
+        alert("Database is not ready yet!");
+        return;
+    }
+
+    var transaction = db.transaction(["employee"], IDBTransaction.READ_WRITE);
+    var store = transaction.objectStore("employee");
+    var request = store.get(2); // Get employee with key 2
+
+    request.onerror = function (event) {
+        alert("Error while searching for employee!");
+    };
+
+    request.onsuccess = function (event) {
+        // Display employee details
+        alert("Name: " + request.result.name);
+    };
+}
+
+window.addEventListener("DOMContentLoaded", initDb, false); 
+</script> 
+</head> 
+<body> 
+    <input type="button" value="Print Employee Details" onclick="employee_details()"/><br/> 
+    <input type="button" value="Search Employee Based on Key" onclick="search_employee()"/>
+</body> 
+</html>

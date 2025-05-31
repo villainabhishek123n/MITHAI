@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            var counter = 0;
+
+      $("p").click(function(){
+        counter++;
+        if(counter == 1){
+            $("body").css("background-color","orange");
+        }else if(counter == 2){
+            $("body").css("background-color","pink");
+        }
+         else if(counter == 3){
+            $("body").css("background-color","blue");
+            counter=0;
+         }
+      });
+    });
+    </script>
+</head>
+<body>
+   <p>JAY BHAYANDAR</p>    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Working with Session Storage</title> 
+<script> 
+// function testStorage() {
+// if (('sessionStorage' in window) && window['sessionStorage'] !==null) 
+// {
+// sessionStorage.setItem('name', 'Sarah'); 
+// alert('The name is: '+sessionStorage.getItem('name')); 
+// }
+// }
+function testStorage()
+{
+    if ('sessionStorage' in window && window['sessionStorage'] !== null) 
+    {
+        sessionStorage.setItem(6,'the book was wondenful');
+        var feedback=sessionStorage.getItem(6);
+        alert('The feedback is: '+feedback);
+}
+}
+</script> 
+</head> 
+<body onload="testStorage();"> 
+</body> 
+</html>

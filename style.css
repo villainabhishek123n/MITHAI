@@ -1,0 +1,23 @@
+
+        body{
+            color: blueviolet;
+            background-color: aqua;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: url("download.jpeg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        h1{
+            color: brown;
+        }
+        .a1{
+        color: chartreuse;
+        }
+        p{
+            color: darkgoldenrod;
+        }
+        #i{
+            color: black;
+        }
+  

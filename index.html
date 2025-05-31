@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var indexedDB=window.indexedDB||webkitIndexDB ||window.mozIndexDB||window.msIndexDB;
+    var request=indexedDB.open("myDatabase",1);
+
+     
+    request.onsuccess=function(event)
+    {
+      console.log("Database opened");
+    };
+    request.onerror=function(event)
+    {
+      console.log("Error opening database"+event.target.console.errorCode);
+      };
+//       var employeeData=[
+//                 {name:"jane smith",email:"jane@company.com"},
+//           {name:"bob smith",email:"bob@company.com"},
+//           {name:"alice smith",email:"alice@company.com"},
+//           {name:"dave smith",email:"dave@company.com"}
+//       ];
+//       var objectStore=db.createObjectStore("employee",{
+//         keyPath:"name",autoIncrement:true});
+// for(i in employeeData){
+//   objectStore.add(employeeData[i]);
+//   alert("recordadd");
+// }
+      
+  </script>
+</body>
+</html>

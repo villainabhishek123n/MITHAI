@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Use the jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+  var counter = 0;  // This will track the number of clicks
+  
+  $("p").click(function() {
+    counter++;
+    if(counter == 1) {
+      $("body").css("background-color", "yellow");
+    } else if(counter == 2) {
+      $("body").css("background-color", "pink");
+    }
+      else if(counter == 3) {
+        $("body").css("background-color", "silver");
+    } else {
+      $("body").css("background-color", "black");
+      counter = 0;  // Reset the counter after third click
+    }
+  });
+});
+</script>
+</head>
+<body>
+<p>Click to change the colors.</p>
+</body>
+</html>

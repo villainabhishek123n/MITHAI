@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>IndexedDB API</title> 
+<!--[if IE]> 
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.ja"></
+script> 
+<![endif]--> 
+<script> 
+//Detect the support for IndexedDB APS 
+var indexedDB=window.indexedDB||window.webkitIndexedDB||window.mozIndexedDB||window.msIndexedDB;
+var IDBTransaction=window.IDBTransaction||window.webkitIDBTransaction;
+
+var db;
+var transaction;
+var store;
+var objectStore;
+var employeeData = [ 
+{name: "John Smith", email: "john@company.com"},
+{name: "Jill Patrick", email: "jill@company.com"}, 
+{name: "Rock Ethan", email: "rock@company.com"},
+{name: "Daniel Andrew", email: "daniel@company.com"}]; 
+function initDb(){ 
+var request =indexedDB.open("CompanyDB", 1); 
+request.onsuccess=function(evt) {
+db=request.result;
+var setVrequest=db.setVersion("1.99");
+setVrequest.onsuccess=function(e) {
+if (db.objectStoreNames.contains ("employee")) {
+db.deleteObjectStore ("employee") ;
+alert('Existing Employee Object Deleted'); 
+}
+objectStore=db.createObjectStore ("employee" ,{
+keyPath: "id", autoIncrement: true}); 
+alert('Employee Object Created'); 
+objectStore.createIndex("name", "name", {unique:false})
+objectStore.createIndex("email", "email", {uniquer:true});
+for (i in employeeData) { 
+objectStore.put(employeeData[i]); 
+alert("Record added"); 
+} 
+}; 
+}; 
+request.onerror = function (evt) { 
+console.log("IndexedDBerror: "+evt.target.errorCode); 
+}; 
+} 
+function employee_details() {
+store=db.transaction("employee").objectStore("employee"); 
+store.openCursor().onsuccess = function (event) { 
+var cursor = event.target.result; 
+if (cursor) { 
+alert("Name for id "+cursor.key+"is"+cursor.value.name); 
+cursor.continue(); 
+} 
+}; 
+} 
+function search_employee () 
+{ 
+trans=db.transaction(["employee"], IDBTransaction.READ_WRITE).objectStore ("employee"); 
+var request=trans.get(2); 
+request.onerror=function (event) { // Handle errors! 
+};
+    request.onsuccess = function (event) { 
+//Workwith the request.result 
+alert("Name:"+request.result.name); 
+}; 
+}
+window.addEventListener("DOMContentLoaded", initDb, false); 
+</script> 
+</head> 
+<body> 
+<input type="button" value="Print Employees Details" onclick="employee_details()"/><br/> 
+<input type="button" value="Search Employee Based on Key" onclick="search_employee()"/> 
+</body> 
+</html>

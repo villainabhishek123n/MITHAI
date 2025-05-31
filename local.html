@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function store()
+        {
+            if (('localStorage' in window) && window['localStorage'] !==null) 
+{
+            var username=document.getElementById('username').value; 
+localStorage.setItem('username', username); 
+} 
+else {
+alert ('your browser does not support storage'); 
+        }
+    }
+
+function cancel_store()
+{ 
+if (('localStorage' in window) && window['localStorage'] !==null) 
+{ 
+localStorage.removeItem('username'); 
+}
+else {
+alert ('your browser does not support storage'); 
+}
+}
+</script> 
+</head> 
+<body> 
+<form method="get" action="success.html"> 
+Username: <input type="text" id="username" value="" size="20" onblur="store()"/> 
+<input type="submit" value="Submit"/> 
+<input type="reset" Value="Cancel" onclick="cancel_store()"/>
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

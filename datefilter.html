@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo for date filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="demoApp" ng-controller="timeCtrl">
+        <p>Date = {{ today | date: "dd.MM.y" }}</p>
+        <p>Date = {{ today | date: "short" }}</p>
+        <p>Date = {{ today | date: "medium" }}</p>
+        <p>Date = {{ today | date: "shortDate" }}</p>
+        <p>Date = {{ today | date: "longDate" }}</p>
+        <p>Date = {{ today | date: "fullDate" }}</p>
+        <p>Date = {{ today | date: "mediumTime" }}</p>
+    </div>
+
+    <script>
+        var app = angular.module('demoApp', []);
+        app.controller('timeCtrl', function($scope) {
+            $scope.today = new Date();
+        });
+    </script>
+
+    <p>You can write the date in many different formats.</p>
+</body>
+</html>

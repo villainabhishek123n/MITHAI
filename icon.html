@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thumbnail</title>
+<style>
+/* general */
+body {
+margin:10;
+padding: 40px 80px;
+background: #615a5a;
+font: 70% Arial, Helvetica, sans-serif;
+color:#20bd00;
+line-height:100%;
+
+}
+h1, h2 {
+font-size:180%;
+font-weight: normal;
+color: #437fac;
+}
+
+a{
+color: #f20;
+text-decoration:none;
+}
+a:hover{
+color:#fbf7fc;
+background-color: rgb(14, 91, 159);
+}
+img {
+border:#f0ecf1 1px solid;
+height: 200px;
+width: 200px;
+}
+/* // general */
+/* thumbnail list */
+ul#thumbs, ul#thumbs li{
+margin:0;
+padding:0;
+list-style:none;
+
+}
+ul#thumbs li{
+float:left;
+margin-right:1px; border:1px solid #999;
+padding: 2px;
+}
+ul#thumbs a{
+display:block;
+float:left;
+width:150px;
+height:150px;
+line-height:150px;
+overflow:hidden;
+position:relative;
+z-index: 1;
+}
+ul#thumbs a img{
+float: left;
+position:absolute;
+top:1px;
+left:1px;
+}
+/* mouse over */
+ul#thumbs a:hover{
+overflow:visible;
+z-index:1000;
+border:#20bd00 1px solid;
+border-radius: 10px ;
+}
+
+ul#thumbs a:hover img{
+border:10px solid #faf7f7; background: #f6f6f6;
+padding: 500x;
+border-radius: 10px ;
+}
+/* // mouse over */
+/* clearing floats */
+ul#thumbs:after, li#thumbs:after{
+content:"";
+display:block;
+height:10;
+clear:both;
+visibility:hidden;
+}
+
+
+/* // clearing floats */
+/* // thumbnail list */
+</style>
+</head>
+<body>
+<h2>Thumbnail</h2>
+
+<ul id="thumbs">
+    <li><a href="Bhagwan-Ram jpeg.jpg" target="_blank">
+        <img src="Bhagwan-Ram jpeg.jpg" height="150" width="150"/></a></li>
+    </ul>
+    </body>
+    </html>
+   

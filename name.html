@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"> 
+     function validation()
+        {
+        var a = document.form.name.value; 
+         if(a=="admin")
+        {
+            window.open("loop.html");
+        // alert("Please Enter Your Name"); 
+        //  document.form.name.focus();  
+        //  return false;
+        }
+        else{
+            alert("Please Enter Your Name");
+        }
+        }
+        </script> 
+</head>
+<body>
+        <form name="form" method="post" onsubmit="return validation()">
+        <tr>
+        <td> Your Name:</td>
+        <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td><input type="submit" name="sub" value="Submit"></td>
+        </tr>
+        </form>
+        </body>
+        </html>
+        
